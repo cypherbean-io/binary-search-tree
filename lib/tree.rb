@@ -88,4 +88,12 @@ class Tree
     preorder(node.right, values, &block)
     values unless block_given?
   end
+
+  def postorder(node = @root, values = [], &block)
+    return if node.nil?
+    postorder(node.left, values, &block)
+    postorder(node.right, values, &block)
+    block_given? ? yield(node) : values << node.data
+    values unless block_given?
+  end
 end
