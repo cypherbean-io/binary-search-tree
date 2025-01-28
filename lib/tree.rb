@@ -60,4 +60,16 @@ class Tree
     return node if value == node.data
     value < node.data ? find(value, node.left) : find(value, node.right)
   end
+
+  def level_order(node = @root, values = [], &block)
+    return if node.nil?
+    queue = [node]
+    until queue.empty?
+      current = queue.shift
+      block_given? ? yield(current) : values << current.data
+      queue << current.left unless current.left.nil?
+      queue << current.right unless current.right.nil?
+    end
+    values unless block_given?
+  end
 end
