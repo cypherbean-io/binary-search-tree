@@ -80,4 +80,12 @@ class Tree
     inorder(node.right, values, &block)
     values unless block_given?
   end
+
+  def preorder(node = @root, values = [], &block)
+    return if node.nil?
+    block_given? ? yield(node) : values << node.data
+    preorder(node.left, values, &block)
+    preorder(node.right, values, &block)
+    values unless block_given?
+  end
 end
