@@ -96,4 +96,9 @@ class Tree
     block_given? ? yield(node) : values << node.data
     values unless block_given?
   end
+
+  def height(node = @root)
+    return -1 if node.nil?
+    [height(node.left), height(node.right)].max + 1
+  end
 end
