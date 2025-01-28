@@ -72,4 +72,12 @@ class Tree
     end
     values unless block_given?
   end
+
+  def inorder(node = @root, values = [], &block)
+    return if node.nil?
+    inorder(node.left, values, &block)
+    block_given? ? yield(node) : values << node.data
+    inorder(node.right, values, &block)
+    values unless block_given?
+  end
 end
