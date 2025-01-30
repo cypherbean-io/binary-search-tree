@@ -101,4 +101,13 @@ class Tree
     return -1 if node.nil?
     [height(node.left), height(node.right)].max + 1
   end
+
+  def depth(node, target = @root, edges = 0)
+    return edges if node == target
+    if node.data < target.data
+      depth(node, target.left, edges + 1)
+    else
+      depth(node, target.right, edges + 1)
+    end
+  end
 end
