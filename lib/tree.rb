@@ -117,4 +117,9 @@ class Tree
     right_height = height(node.right)
     (left_height - right_height).abs <= 1 && balanced?(node.left) && balanced?(node.right)
   end
+
+  def rebalance
+    array = inorder
+    @root = build_tree(array)
+  end
 end
